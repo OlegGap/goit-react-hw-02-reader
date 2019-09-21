@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Production version [here](https://oleggap.github.io/goit-react-hw-02-reader/).
 
 ## Available Scripts
 
