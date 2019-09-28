@@ -18,21 +18,27 @@ export default class Reader extends Component {
   }
 
   handleNextPage = () => {
-    this.setState(prevState => (prevState.page += 1));
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
   };
 
   handlePrevPage = () => {
-    this.setState(prevState => (prevState.page -= 1));
+    this.setState(prevState => ({
+      page: prevState.page - 1,
+    }));
   };
 
   render() {
+    const { items } = this.props;
+    const { page } = this.state;
     return (
       <ReaderDiv className="reader">
-        <Publication items={this.props.items} page={this.state.page} />
-        <Counter items={this.props.items} page={this.state.page} />
+        <Publication items={items} page={page} />
+        <Counter items={items} page={page} />
         <Controls
-          items={this.props.items}
-          page={this.state.page}
+          items={items}
+          page={page}
           handleNextPage={this.handleNextPage}
           handlePrevPage={this.handlePrevPage}
         />
