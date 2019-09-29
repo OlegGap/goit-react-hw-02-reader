@@ -10,7 +10,6 @@ const ReaderDiv = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
-
 export default class Reader extends Component {
   constructor(props) {
     super(props);
