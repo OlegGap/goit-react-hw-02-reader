@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
@@ -7,7 +8,7 @@ const ControlsSection = styled.section`
   justify-content: center;
   margin-top: 16px;
 `;
-const ControlsButton = styled.button`
+const ButtonStyle = styled.button`
   display: inline-block;
   min-width: 240px;
   border: 0
@@ -36,27 +37,40 @@ const ControlsButton = styled.button`
   }
 `;
 
-const Controls = ({ items, page, handleNextPage, handlePrevPage }) => {
-  const isDisabledButtonNext = page === items.length - 1;
-  const isDisabledButtonPrev = page === 0;
+const Controls = ({ items, currentPage }) => {
+  const disabledButtonNext = currentPage === items.length;
+  const disabledButtonPrev = currentPage === 1;
+
   return (
     <ControlsSection className="controls">
-      <ControlsButton
-        type="button"
-        onClick={handlePrevPage}
-        className="button"
-        disabled={isDisabledButtonPrev}
+      <Link
+        to={{
+          pathname: '/reader',
+          search: `?item=${disabledButtonPrev ? currentPage : currentPage - 1}`,
+        }}
       >
-        Назад
-      </ControlsButton>
-      <ControlsButton
-        type="button"
-        onClick={handleNextPage}
-        className="button"
-        disabled={isDisabledButtonNext}
+        <ButtonStyle
+          type="button"
+          className="button"
+          disabled={disabledButtonPrev}
+        >
+          Назад
+        </ButtonStyle>
+      </Link>
+      <Link
+        to={{
+          pathname: '/reader',
+          search: `?item=${disabledButtonNext ? currentPage : currentPage + 1}`,
+        }}
       >
-        Вперед
-      </ControlsButton>
+        <ButtonStyle
+          type="button"
+          className="button"
+          disabled={disabledButtonNext}
+        >
+          Вперед
+        </ButtonStyle>
+      </Link>
     </ControlsSection>
   );
 };
@@ -69,9 +83,7 @@ Controls.propTypes = {
       text: PropTypes.string,
     }),
   ).isRequired,
-  page: PropTypes.number.isRequired,
-  handleNextPage: PropTypes.func.isRequired,
-  handlePrevPage: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 export default Controls;

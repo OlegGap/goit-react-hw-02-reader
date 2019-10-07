@@ -13,7 +13,7 @@ const CounterP = styled.div`
 const Counter = ({ items, page }) => {
   return (
     <CounterP className="counter">
-      {page + 1}/{items.length}
+      {page}/{items.length}
     </CounterP>
   );
 };

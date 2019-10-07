@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Publication from './Publication';
@@ -11,36 +12,18 @@ const ReaderDiv = styled.div`
   margin-right: auto;
 `;
 export default class Reader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { page: 0 };
-  }
-
-  handleNextPage = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
-  };
-
-  handlePrevPage = () => {
-    this.setState(prevState => ({
-      page: prevState.page - 1,
-    }));
+  parseQueryFromUrl = () => {
+    return queryString.parse(this.props.location.search);
   };
 
   render() {
     const { items } = this.props;
-    const { page } = this.state;
+    const currentPage = Number(this.parseQueryFromUrl().item);
     return (
       <ReaderDiv className="reader">
-        <Publication items={items} page={page} />
-        <Counter items={items} page={page} />
-        <Controls
-          items={items}
-          page={page}
-          handleNextPage={this.handleNextPage}
-          handlePrevPage={this.handlePrevPage}
-        />
+        <Publication items={items} page={currentPage} />
+        <Counter items={items} page={currentPage} />
+        <Controls items={items} currentPage={currentPage} />
       </ReaderDiv>
     );
   }
@@ -53,4 +36,5 @@ Reader.propTypes = {
       text: PropTypes.string,
     }),
   ).isRequired,
+  location: PropTypes.objectOf(PropTypes.any).isRequired,
 };

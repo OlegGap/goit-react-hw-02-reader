@@ -22,7 +22,7 @@ const ArcticleP = styled.p`
 `;
 
 const Publication = ({ items, page }) => {
-  const currentContent = items[page];
+  const currentContent = items[page - 1];
   return (
     <Article className="publication">
       <ArcticleH1>{currentContent.title}</ArcticleH1>
