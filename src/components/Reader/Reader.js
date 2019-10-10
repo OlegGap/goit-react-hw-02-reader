@@ -5,11 +5,6 @@ import Publication from './Publication';
 import Counter from './Counter';
 import Controls from './Controls';
 
-const ReaderDiv = styled.div`
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-`;
 export default class Reader extends Component {
   constructor(props) {
     super(props);
@@ -54,3 +49,9 @@ Reader.propTypes = {
     }),
   ).isRequired,
 };
+
+const ReaderDiv = styled.div`
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+`;
