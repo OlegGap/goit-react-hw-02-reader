@@ -2,15 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-const Publication = ({ items, page }) => {
-  const currentContent = items[page];
-  return (
-    <Article className="publication">
-      <ArcticleH1>{currentContent.title}</ArcticleH1>
-      <ArcticleP>{currentContent.text}</ArcticleP>
-    </Article>
-  );
-};
+const Publication = ({ items, page }) => (
+  <Article className="publication">
+    <ArcticleH1>{items[page].title}</ArcticleH1>
+    <ArcticleP>{items[page].text}</ArcticleP>
+  </Article>
+);
 
 Publication.propTypes = {
   items: PropTypes.arrayOf(

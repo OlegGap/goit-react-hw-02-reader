@@ -2,13 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-const Counter = ({ items, page }) => {
-  return (
-    <CounterP className="counter">
-      {page + 1}/{items.length}
-    </CounterP>
-  );
-};
+const Counter = ({ items, page }) => (
+  <CounterP className="counter">
+    {page + 1}/{items.length}
+  </CounterP>
+);
+
 Counter.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.exact({
