@@ -6,20 +6,11 @@ import Counter from './Counter';
 import Controls from './Controls';
 
 export default class Reader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { page: 0 };
-  }
+  state = { page: 0 };
 
-  handleNextPage = () => {
+  handleChangePage = ({ target }) => {
     this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
-  };
-
-  handlePrevPage = () => {
-    this.setState(prevState => ({
-      page: prevState.page - 1,
+      page: prevState.page + (target.name === 'next' ? 1 : -1),
     }));
   };
 
@@ -33,8 +24,7 @@ export default class Reader extends Component {
         <Controls
           items={items}
           page={page}
-          handleNextPage={this.handleNextPage}
-          handlePrevPage={this.handlePrevPage}
+          handleChangePage={this.handleChangePage}
         />
       </ReaderDiv>
     );

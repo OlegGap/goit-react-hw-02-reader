@@ -2,30 +2,28 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-const Controls = ({ items, page, handleNextPage, handlePrevPage }) => {
-  const isDisabledButtonNext = page === items.length - 1;
-  const isDisabledButtonPrev = page === 0;
-  return (
-    <ControlsSection className="controls">
-      <ControlsButton
-        type="button"
-        onClick={handlePrevPage}
-        className="button"
-        disabled={isDisabledButtonPrev}
-      >
-        Назад
-      </ControlsButton>
-      <ControlsButton
-        type="button"
-        onClick={handleNextPage}
-        className="button"
-        disabled={isDisabledButtonNext}
-      >
-        Вперед
-      </ControlsButton>
-    </ControlsSection>
-  );
-};
+const Controls = ({ items, page, handleChangePage }) => (
+  <ControlsSection className="controls">
+    <ControlsButton
+      type="button"
+      onClick={handleChangePage}
+      className="button"
+      disabled={!page}
+      name="prev"
+    >
+      Назад
+    </ControlsButton>
+    <ControlsButton
+      type="button"
+      onClick={handleChangePage}
+      className="button"
+      disabled={page === items.length - 1}
+      name="next"
+    >
+      Вперед
+    </ControlsButton>
+  </ControlsSection>
+);
 
 Controls.propTypes = {
   items: PropTypes.arrayOf(
@@ -36,8 +34,7 @@ Controls.propTypes = {
     }),
   ).isRequired,
   page: PropTypes.number.isRequired,
-  handleNextPage: PropTypes.func.isRequired,
-  handlePrevPage: PropTypes.func.isRequired,
+  handleChangePage: PropTypes.func.isRequired,
 };
 
 const ControlsSection = styled.section`
