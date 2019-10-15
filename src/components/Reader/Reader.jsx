@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Publication from './Publication';
 import Counter from './Counter';
-import Controls from './Controls';
+import Controls from './Controls/Controls';
 
 export default class Reader extends Component {
   state = { page: 0 };
